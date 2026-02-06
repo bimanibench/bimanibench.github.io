@@ -127,7 +127,52 @@
     </div>
   </div>
 </section>
+<!-- Overview Section -->
+<!-- Overview Section -->
+<!-- Overview Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Overview</h2>
 
+        <div class="content has-text-justified">
+          <!-- 段落 1: 背景与挑战 -->
+          <p>
+            <strong>BiManiBench</strong> is the <strong>first hierarchical benchmark</strong> specifically designed to systematically evaluate the <strong>bimanual coordination</strong> capabilities of Multimodal Large Language Models (MLLMs). While current research in embodied AI has made significant strides in single-arm manipulation, bimanual coordination remains a formidable challenge. It requires more than just parallel execution; it demands <strong>rigorous spatiotemporal synchronization</strong> and <strong>dynamic role assignment</strong> to navigate complex kinematic constraints and prevent self-collisions. BiManiBench addresses this critical gap by providing a dedicated platform to analyze how foundation models manage the unique complexities of <strong>dual-arm physical interaction</strong>.
+          </p>
+
+          <!-- 图片 1: Framework Overview -->
+          <div class="has-text-centered" style="margin-top: 2rem; margin-bottom: 2rem;">
+            <img src="./static/images/framework_overview.png" alt="BiManiBench Framework Overview" style="width: 100%; height: auto; border-radius: 10px;">
+            <p class="help" style="margin-top: 10px;"><strong>Figure 1</strong>: The hierarchical evaluation framework of BiManiBench, deconstructing bimanual coordination into three tiers of abstraction.</p>
+          </div>
+
+          <!-- 段落 2: 三层评估框架 -->
+          <p>
+            As illustrated in <strong>Figure 1</strong>, our benchmark features a comprehensive <strong>three-tier evaluation framework</strong> that deconstructs bimanual tasks into different levels of abstraction. <strong>Tier 1 (Dual-Arm Spatial Reasoning)</strong> assesses fundamental workspace awareness and arm allocation. <strong>Tier 2 (High-Level Action Planning)</strong> evaluates long-horizon reasoning under diverse coordination modes, including independent parallel tasks and complex sequential collaborative manipulation. <strong>Tier 3 (Low-Level End-Effector Control)</strong> tests the model’s ability to directly generate <strong>fine-grained, 16-dimensional continuous poses</strong> for precise bimanual synchronization. This hierarchical design allows researchers to <strong>isolate specific failure modes</strong> and distinguish between perceptual hallucinations and planning deficiencies.
+          </p>
+
+          <!-- 图片 2: Agent Pipeline -->
+          <div class="has-text-centered" style="margin-top: 2rem; margin-bottom: 2rem;">
+            <img src="./static/images/agent_pipeline.png" alt="BiManiBench Agent Pipeline" style="width: 100%; height: auto; border-radius: 10px;">
+            <p class="help" style="margin-top: 10px;"><strong>Figure 2</strong>: The vision-driven agent pipeline designed for structured multimodal perception and reasoning.</p>
+          </div>
+
+          <!-- 段落 3: Agent Pipeline 细节 -->
+          <p>
+            The core of our evaluation is supported by a <strong>vision-driven agent pipeline</strong> designed for <strong>structured multimodal perception and reasoning</strong> (<strong>Figure 2</strong>). The agent processes diverse inputs—including <strong>multi-view observations</strong> (main and third-person views), language instructions, and task-specific auxiliary information—to bridge the gap between perception and action. Within each planning step, the MLLM functions as a <strong>central "brain"</strong> that generates a visual state description, performs <strong>internal reasoning and reflection</strong>, and formulates a language-based plan before outputting a <strong>structured, executable JSON format</strong>. This iterative closed-loop process ensures that the agent can adapt its coordination strategy based on the evolving environment state.
+          </p>
+
+          <!-- 段落 4: 实验结论 -->
+          <p>
+            Through an extensive empirical study of <strong>over 30 state-of-the-art models</strong>—including proprietary systems like <strong>GPT-5, Gemini, and Claude</strong>—our results reveal a significant <strong>"reasoning-actuation gap."</strong> While modern MLLMs demonstrate proficiency in high-level strategic planning, they frequently struggle with <strong>fragile spatial grounding</strong> and <strong>precise dual-arm control</strong>. By pinpointing these bottlenecks, BiManiBench provides a foundational framework and diagnostic tool for the community to develop more robust, versatile robotic agents capable of <strong>human-like physical coordination</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- 核心方法/结果展示 -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -155,15 +200,6 @@
   journal   = {arXiv preprint},
   year      = {2026},
 }</code></pre>
-  </div>
-</section>
-
-
-<!-- 显示为 Coming soon -->
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <p>Coming soon</p>
   </div>
 </section>
 
