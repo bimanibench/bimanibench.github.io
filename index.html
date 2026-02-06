@@ -8,6 +8,7 @@
   <title>BiManiBench: A Hierarchical Benchmark for Evaluating Bimanual Coordination of Multimodal Large Language Models</title>
 
   <!-- 载入基础样式 Bulma 和字体 -->
+  <link rel="icon" href="./static/images/favicon.png"> 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
@@ -44,7 +45,17 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <!-- 论文标题 -->
-          <h1 class="title is-1 publication-title">BiManiBench: A Hierarchical Benchmark for Evaluating Bimanual Coordination of Multimodal Large Language Models</h1>
+<h1 class="title is-1 publication-title">
+  <!-- 第一行：Logo + 品牌名 -->
+  <img src="./static/images/logo.png" 
+     style="width:2.2em; vertical-align: middle; position: relative; top: -0.1em; margin-right: 0.1em;">
+  <span style="color: #246FAF; font-weight: 800;">BiMani</span><span style="font-weight: 800;">Bench</span>
+  <br>
+  <!-- 第二行：描述性副标题 -->
+  <span class="is-size-2" style="font-weight: 400;">
+    A Hierarchical Benchmark for Evaluating Bimanual Coordination of Multimodal Large Language Models
+  </span>
+</h1>
           
           <!-- 作者列表 -->
           <div class="is-size-5 publication-authors">
@@ -109,7 +120,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Coming soon.
+            Multimodal Large Language Models (MLLMs) have significantly advanced embodied AI, and using them to benchmark robotic intelligence has become a pivotal trend. However, existing frameworks remain predominantly confined to single-arm manipulation, failing to capture the spatio-temporal coordination required for bimanual tasks like lifting a heavy pot. To address this, we introduce BiManiBench, a hierarchical benchmark evaluating MLLMs across three tiers: fundamental spatial reasoning, high-level action planning, and low-level end-effector control. Our framework isolates unique bimanual challenges, such as arm reachability and kinematic constraints, thereby distinguishing perceptual hallucinations from planning failures. Analysis of over 30 state-of-the-art models reveals that despite high-level reasoning proficiency, MLLMs struggle with dual-arm spatial grounding and control, frequently resulting in mutual interference and sequencing errors. These findings suggest the current paradigm lacks a deep understanding of mutual kinematic constraints, highlighting the need for future research to focus on inter-arm collision-avoidance and fine-grained temporal sequencing.
           </p>
         </div>
       </div>
@@ -139,7 +150,7 @@
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{wu2026bimanibench,
   author    = {Wu, Xin and Liang, Zhixuan and Ma, Yue and Hu, Mengkang and Qin, Zhiyuan and Li, Xiu},
-  title     = {BiManiBench: A Hierarchical Benchmark for Evaluating Bimanual Coordination of Multimodal Large Language Models},
+  title     = {{BiManiBench}: A Hierarchical Benchmark for Evaluating Bimanual Coordination of Multimodal Large Language Models},
   journal   = {arXiv preprint},
   year      = {2026},
 }</code></pre>
