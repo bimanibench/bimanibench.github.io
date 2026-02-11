@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-
+  <link rel="stylesheet" href="/static/css/bimanibench.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
 </head>
@@ -174,22 +174,424 @@
   </div>
 </section>
 <!-- 核心方法/结果展示 -->
-<section class="section">
+<!-- Hierarchical Evaluation Results -->
+<!-- Hierarchical Evaluation Examples -->
+<section class="section" style="background-color: #fcfcfc;">
   <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="margin-bottom: 1rem;">Hierarchical Evaluation Examples</h2>
+        
+        <!-- Tier 1: Dual-Arm Spatial Reasoning -->
+        <h3 class="title is-4" style="margin-top: 2rem; margin-bottom: 1rem;">Tier 1: Dual-Arm Spatial Reasoning</h3>
+        <div class="content has-text-justified">
+          <p style="margin-bottom: 1.5rem;">
+            This tier assesses fundamental spatial awareness and the ability to perform <strong>dynamic arm assignment</strong>. Given a visual observation, the model must determine the optimal manipulator while navigating strict <strong>kinematic constraints</strong> and limited reachability.
+          </p>
+        </div>
+        
+        <!-- Tier 1 改为纵向大图排列 -->
+        <div class="columns is-centered is-multiline">
+          <!-- High Quality -->
+          <div class="column is-10 has-text-centered" style="padding-bottom: 0.5rem;">
+            <img src="./static/images/spatial1_crop.svg" alt="High Quality Reasoning" style="width: 100%; max-width: 800px; height: auto;">
+            <p class="is-size-6" style="margin-top: 0.5rem;"><strong>High-quality reasoning</strong>: Precise grounding and optimal arm allocation.</p>
+          </div>
+          <!-- Medium Quality -->
+          <div class="column is-10 has-text-centered" style="padding-bottom: 0.5rem; margin-top: 1rem;">
+            <img src="./static/images/spatial2_crop.svg" alt="Medium Quality Reasoning" style="width: 100%; max-width: 800px; height: auto;">
+            <p class="is-size-6" style="margin-top: 0.5rem;"><strong>Average-quality reasoning</strong>: Valid logic but with minor spatial ambiguity.</p>
+          </div>
+          <!-- Low Quality -->
+          <div class="column is-10 has-text-centered" style="padding-bottom: 0.5rem; margin-top: 1rem;">
+            <img src="./static/images/spatial3_crop.svg" alt="Low Quality Reasoning" style="width: 100%; max-width: 800px; height: auto;">
+            <p class="is-size-6" style="margin-top: 0.5rem;"><strong>Low-quality reasoning</strong>: Significant visual hallucinations and planning failures.</p>
+          </div>
+        </div>
+
+        <!-- Tier 2 & 3 改为纵向排列并缩小间距 -->
+        <div class="columns is-centered" style="margin-top: 2rem;">
+          <div class="column is-full-width">
+            
+            <!-- Tier 2 -->
+            <h3 class="title is-4" style="margin-bottom: 1rem;">Tier 2: High-Level Action Planning</h3>
+            <div class="content has-text-justified">
+              <p style="margin-bottom: 1rem;">
+                Evaluates logical reasoning and task decomposition in <strong>long-horizon scenarios</strong>. The model acts as a strategic planner, outputting a logical sequence of <strong>atomic primitives</strong> (e.g., Grasp, Place).
+              </p>
+              <div class="has-text-centered">
+                <video id="high-level-video" autoplay controls muted loop playsinline style="width: 100%; max-width: 850px; border-radius: 8px;">
+                  <source src="./static/videos/high_level_success_demo.mp4" type="video/mp4">
+                </video>
+                <p class="help" style="margin-top: 0.5rem; margin-bottom: 0;"><strong>Task Success</strong>: <i>handover_block</i> (Sequential coordination)</p>
+              </div>
+            </div>
+
+            <div style="margin-top: 3rem;"></div> <!-- 控制两个Tier之间的距离 -->
+
+            <!-- Tier 3 -->
+            <h3 class="title is-4" style="margin-bottom: 1rem;">Tier 3: Low-Level End-Effector Control</h3>
+            <div class="content has-text-justified">
+              <p style="margin-bottom: 1rem;">
+                The most challenging tier requiring precise motor control. The agent directly generates <strong>continuous 16-dimensional actions</strong> (7-DoF pose and 1-DoF gripper state per arm) for bimanual synchronization.
+              </p>
+              <div class="has-text-centered">
+                <video id="low-level-video" autoplay controls muted loop playsinline style="width: 100%; max-width: 850px; border-radius: 8px;">
+                  <source src="./static/videos/low_level_success_demo.mp4" type="video/mp4">
+                </video>
+                <p class="help" style="margin-top: 0.5rem; margin-bottom: 0;"><strong>Task Success</strong>: <i>stack_blocks_two</i> (Precise motor control)</p>
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- End of T2 & T3 columns -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background-color: #fcfcfc;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="margin-bottom: 1rem;">Hierarchical Evaluation Results</h2>
+        
+<div class="bimanibench-wrapper">
+
+    <!-- Tier 1: Dual-Arm Spatial Reasoning -->
+    <section id="tier1-spatial">
+        <h3 class="table-title">Table 1: Dual-Arm Spatial Reasoning Results</h3>
+        <span class="table-subtitle">Success scores across three scenario settings: Sparse, Dense, and Cluttered. "Avg." represents the overall mean performance.</span>
+        
+        <div class="scroll-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Models</th>
+                        <th colspan="3">Task scenario settings</th>
+                        <th rowspan="2" class="bg-total">Avg.</th>
+                    </tr>
+                    <tr>
+                        <th>Sparse</th>
+                        <th>Dense</th>
+                        <th>Cluttered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                        <tr><td class="model-name">Gemini-2.0-flash</td><td>95.45</td><td>98.69</td><td>92.00</td><td class="bg-total">95.38</td></tr>
+                    <tr><td class="model-name">Gemini-2.5-flash</td><td>95.77</td><td>96.76</td><td>92.88</td><td class="bg-total">95.13</td></tr>
+                    <tr><td class="model-name">Gemini-2.5-pro</td><td>96.14</td><td>96.77</td><td>92.12</td><td class="bg-total">95.01</td></tr>
+                    <tr><td class="model-name">Claude-sonnet-4.5</td><td>96.12</td><td>94.78</td><td>92.23</td><td class="bg-total">94.38</td></tr>
+                    <tr><td class="model-name">GPT-5</td><td>94.73</td><td>95.13</td><td>92.97</td><td class="bg-total">94.28</td></tr>
+                    <tr><td class="model-name">GLM-4.5V</td><td>91.48</td><td>97.77</td><td>93.00</td><td class="bg-total">94.08</td></tr>
+                    <tr><td class="model-name">Qwen3-VL-32B-Instruct</td><td>94.47</td><td>95.77</td><td>91.77</td><td class="bg-total">94.00</td></tr>
+                    <tr><td class="model-name">Claude-sonnet-4</td><td>94.13</td><td>94.46</td><td>92.88</td><td class="bg-total">93.82</td></tr>
+                    <tr><td class="model-name">Claude-sonnet-3.7</td><td>93.46</td><td>95.11</td><td>91.94</td><td class="bg-total">93.51</td></tr>
+                    <tr><td class="model-name">InternVL3-78B</td><td>92.80</td><td>97.07</td><td>90.16</td><td class="bg-total">93.34</td></tr>
+                    <tr><td class="model-name">Ovis2-34B</td><td>94.78</td><td>92.78</td><td>90.45</td><td class="bg-total">92.67</td></tr>
+                    <tr><td class="model-name">GPT-4.1</td><td>93.43</td><td>92.48</td><td>91.76</td><td class="bg-total">92.55</td></tr>
+                    <tr><td class="model-name">Ovis2-16B</td><td>94.07</td><td>91.74</td><td>88.00</td><td class="bg-total">91.27</td></tr>
+                    <tr><td class="model-name">Qwen3-VL-235B-A22B-Instruct</td><td>86.82</td><td>93.50</td><td>90.33</td><td class="bg-total">90.22</td></tr>
+                    <tr><td class="model-name">InternVL3.5-38B</td><td>89.48</td><td>91.45</td><td>86.75</td><td class="bg-total">89.23</td></tr>
+                    <tr><td class="model-name">GPT-4o</td><td>89.02</td><td>91.13</td><td>87.10</td><td class="bg-total">89.08</td></tr>
+                    <tr><td class="model-name">Qwen3-VL-30B-A3B-Instruct</td><td>85.50</td><td>91.13</td><td>88.98</td><td class="bg-total">88.54</td></tr>
+                    <tr><td class="model-name">InternVL3-38B</td><td>81.82</td><td>92.13</td><td>89.85</td><td class="bg-total">87.94</td></tr>
+                    <tr><td class="model-name">InternVL2.5-78B</td><td>87.21</td><td>86.45</td><td>89.37</td><td class="bg-total">87.68</td></tr>
+                    <tr><td class="model-name">Llama-4-Scout-17B-16E-Instruct</td><td>85.49</td><td>87.75</td><td>86.16</td><td class="bg-total">86.47</td></tr>
+                    <tr><td class="model-name">Gemma-3-27b-it</td><td>92.40</td><td>81.12</td><td>85.78</td><td class="bg-total">86.43</td></tr>
+                    <tr><td class="model-name">Qwen2.5-VL-32B-Instruct</td><td>85.16</td><td>86.08</td><td>87.38</td><td class="bg-total">86.21</td></tr>
+                    <tr><td class="model-name">InternVL2.5-38B</td><td>79.16</td><td>85.47</td><td>85.99</td><td class="bg-total">83.54</td></tr>
+                    <tr><td class="model-name">InternVL2.5-8B</td><td>87.48</td><td>78.96</td><td>81.81</td><td class="bg-total">82.75</td></tr>
+                    <tr><td class="model-name">InternVL3-8B</td><td>79.53</td><td>69.79</td><td>86.79</td><td class="bg-total">78.70</td></tr>
+                    <tr><td class="model-name">Ovis2.5-9B</td><td>72.79</td><td>78.12</td><td>73.13</td><td class="bg-total">74.68</td></tr>
+                    <tr><td class="model-name">Qwen2.5-VL-7B-Instruct</td><td>75.20</td><td>65.83</td><td>79.34</td><td class="bg-total">73.46</td></tr>
+                    <tr><td class="model-name">Gemma-3-12b-it</td><td>80.09</td><td>57.17</td><td>70.22</td><td class="bg-total">69.16</td></tr>
+                    <tr><td class="model-name">Llama-3.2-11B-Vision-Instruct</td><td>54.64</td><td>53.62</td><td>54.01</td><td class="bg-total">54.09</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Tier 2: High-Level Action Planning -->
+    <section id="tier2-planning">
+        <h3 class="table-title">Table 2: High-Level Action Planning Results</h3>
+        <span class="table-subtitle">Success rate (%) for independent parallel and sequential collaborative manipulation tasks.</span>
+        
+        <div class="scroll-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Models</th>
+                        <th colspan="7" class="bg-indep">Independent Parallel Manipulation</th>
+                        <th colspan="9" class="bg-seq">Sequential Collaborative Manipulation</th>
+                        <th rowspan="2" class="bg-total">Total Avg.</th>
+                    </tr>
+                    <tr>
+                        <th class="bg-indep">Avg.</th><th>P1</th><th>P2</th><th>R1</th><th>R2</th><th>S1</th><th>S2</th>
+                        <th class="bg-seq">Avg.</th><th>H1</th><th>H2</th><th>H3</th><th>P3</th><th>P4</th><th>P5</th><th>P6</th><th>P7</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="model-name">Gemini-2.5-Pro</td>
+                        <td class="bg-indep">71.33</td><td>77</td><td>22</td><td>88</td><td>99</td><td>62</td><td>80</td>
+                        <td class="bg-seq">69.38</td><td>94</td><td>60</td><td>83</td><td>94</td><td>74</td><td>35</td><td>63</td><td>52</td>
+                        <td class="bg-total">70.21</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">GPT-5</td>
+                        <td class="bg-indep">76.67</td><td>64</td><td>50</td><td>92</td><td>100</td><td>86</td><td>68</td>
+                        <td class="bg-seq">59.75</td><td>69</td><td>24</td><td>86</td><td>90</td><td>71</td><td>17</td><td>58</td><td>63</td>
+                        <td class="bg-total">67.00</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Gemini-2.5-flash</td>
+                        <td class="bg-indep">67.17</td><td>60</td><td>36</td><td>82</td><td>93</td><td>64</td><td>68</td>
+                        <td class="bg-seq">59.00</td><td>78</td><td>28</td><td>78</td><td>94</td><td>61</td><td>35</td><td>45</td><td>53</td>
+                        <td class="bg-total">62.50</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">GPT-4.1</td>
+                        <td class="bg-indep">78.50</td><td>81</td><td>40</td><td>87</td><td>100</td><td>86</td><td>77</td>
+                        <td class="bg-seq">42.88</td><td>47</td><td>46</td><td>88</td><td>96</td><td>7</td><td>18</td><td>1</td><td>40</td>
+                        <td class="bg-total">58.14</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Claude-sonnet-4</td>
+                        <td class="bg-indep">67.00</td><td>57</td><td>31</td><td>68</td><td>97</td><td>82</td><td>67</td>
+                        <td class="bg-seq">46.63</td><td>92</td><td>32</td><td>83</td><td>97</td><td>37</td><td>20</td><td>1</td><td>11</td>
+                        <td class="bg-total">55.36</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Claude-sonnet-3.7</td>
+                        <td class="bg-indep">69.00</td><td>68</td><td>39</td><td>66</td><td>96</td><td>86</td><td>59</td>
+                        <td class="bg-seq">45.00</td><td>95</td><td>32</td><td>84</td><td>92</td><td>32</td><td>12</td><td>1</td><td>12</td>
+                        <td class="bg-total">55.29</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Qwen3-VL-235B-A22B-Instruct</td>
+                        <td class="bg-indep">58.67</td><td>36</td><td>1</td><td>75</td><td>90</td><td>83</td><td>67</td>
+                        <td class="bg-seq">50.88</td><td>96</td><td>63</td><td>86</td><td>92</td><td>5</td><td>17</td><td>2</td><td>46</td>
+                        <td class="bg-total">54.21</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">InternVL3-38B</td>
+                        <td class="bg-indep">57.50</td><td>71</td><td>0</td><td>79</td><td>77</td><td>58</td><td>60</td>
+                        <td class="bg-seq">49.38</td><td>63</td><td>67</td><td>90</td><td>97</td><td>1</td><td>44</td><td>0</td><td>33</td>
+                        <td class="bg-total">52.86</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Qwen3-VL-32B-Instruct</td>
+                        <td class="bg-indep">54.67</td><td>41</td><td>16</td><td>88</td><td>75</td><td>40</td><td>68</td>
+                        <td class="bg-seq">50.88</td><td>93</td><td>63</td><td>75</td><td>96</td><td>14</td><td>36</td><td>8</td><td>22</td>
+                        <td class="bg-total">52.50</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Qwen2.5-VL-32B-Instruct</td>
+                        <td class="bg-indep">52.67</td><td>62</td><td>7</td><td>93</td><td>88</td><td>24</td><td>42</td>
+                        <td class="bg-seq">50.13</td><td>94</td><td>55</td><td>88</td><td>95</td><td>7</td><td>49</td><td>0</td><td>13</td>
+                        <td class="bg-total">51.21</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Gemini-2.0-flash</td>
+                        <td class="bg-indep">62.83</td><td>72</td><td>43</td><td>87</td><td>94</td><td>43</td><td>38</td>
+                        <td class="bg-seq">41.25</td><td>67</td><td>33</td><td>81</td><td>87</td><td>15</td><td>33</td><td>3</td><td>11</td>
+                        <td class="bg-total">50.50</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">GPT-4o</td>
+                        <td class="bg-indep">52.33</td><td>68</td><td>22</td><td>50</td><td>74</td><td>37</td><td>63</td>
+                        <td class="bg-seq">45.50</td><td>88</td><td>60</td><td>85</td><td>95</td><td>5</td><td>16</td><td>0</td><td>15</td>
+                        <td class="bg-total">48.43</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">InternVL3-78B</td>
+                        <td class="bg-indep">56.33</td><td>72</td><td>7</td><td>69</td><td>81</td><td>39</td><td>70</td>
+                        <td class="bg-seq">33.63</td><td>9</td><td>5	9</td><td>26</td><td>96</td><td>4</td><td>23</td><td>0</td><td>16</td>
+                        <td class="bg-total">43.36</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">InternVL2.5-38B</td>
+                        <td class="bg-indep">45.33</td><td>1</td><td>0</td><td>83</td><td>70</td><td>62</td><td>56</td>
+                        <td class="bg-seq">33.00</td><td>92</td><td>11</td><td>84</td><td>3</td><td>7</td><td>47</td><td>0</td><td>20</td>
+                        <td class="bg-total">38.29</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Ovis2-34B</td>
+                        <td class="bg-indep">45.50</td><td>80</td><td>2</td><td>77</td><td>82</td><td>1</td><td>31</td>
+                        <td class="bg-seq">31.75</td><td>96</td><td>3</td><td>14</td><td>94</td><td>10</td><td>27</td><td>0</td><td>10</td>
+                        <td class="bg-total">37.64</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">InternVL2.5-78B</td>
+                        <td class="bg-indep">47.83</td><td>56</td><td>22</td><td>73</td><td>76</td><td>27</td><td>33</td>
+                        <td class="bg-seq">29.51</td><td>80</td><td>0</td><td>84</td><td>33</td><td>1</td><td>13</td><td>0</td><td>25</td>
+                        <td class="bg-total">37.36</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">InternVL3.5-38B</td>
+                        <td class="bg-indep">41.50</td><td>72</td><td>0</td><td>6</td><td>81</td><td>52</td><td>38</td>
+                        <td class="bg-seq">33.13</td><td>94</td><td>11</td><td>18</td><td>93</td><td>12</td><td>8</td><td>0</td><td>29</td>
+                        <td class="bg-total">36.71</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Qwen2.5-VL-72B-Instruct</td>
+                        <td class="bg-indep">28.60</td><td>16</td><td>0</td><td>/</td><td>88</td><td>3</td><td>36</td>
+                        <td class="bg-seq">37.25</td><td>74</td><td>42</td><td>85</td><td>59</td><td>4</td><td>32</td><td>0</td><td>2</td>
+                        <td class="bg-total">33.92</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Ovis2-16B</td>
+                        <td class="bg-indep">27.50</td><td>67</td><td>0</td><td>25</td><td>32</td><td>38</td><td>3</td>
+                        <td class="bg-seq">24.88</td><td>72</td><td>0</td><td>1</td><td>97</td><td>4</td><td>25</td><td>0</td><td>0</td>
+                        <td class="bg-total">26.00</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Ovis2.5-9B</td>
+                        <td class="bg-indep">17.83</td><td>41</td><td>0</td><td>47</td><td>16</td><td>0</td><td>3</td>
+                        <td class="bg-seq">28.75</td><td>78</td><td>14</td><td>71</td><td>33</td><td>7</td><td>27</td><td>0</td><td>0</td>
+                        <td class="bg-total">24.07</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Qwen3-VL-30B-A3B-Instruct</td>
+                        <td class="bg-indep">19.83</td><td>7</td><td>0</td><td>61</td><td>23</td><td>15</td><td>13</td>
+                        <td class="bg-seq">26.25</td><td>51</td><td>1</td><td>54</td><td>51</td><td>5</td><td>44</td><td>0</td><td>4</td>
+                        <td class="bg-total">23.50</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Gemma-3-27b-it</td>
+                        <td class="bg-indep">27.17</td><td>62</td><td>0</td><td>51</td><td>26</td><td>0</td><td>24</td>
+                        <td class="bg-seq">19.50</td><td>10</td><td>24</td><td>66</td><td>38</td><td>1</td><td>11</td><td>0</td><td>6</td>
+                        <td class="bg-total">22.79</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Llama-4-Scout-17B-16E-Instruct</td>
+                        <td class="bg-indep">10.67</td><td>20</td><td>0</td><td>7</td><td>37</td><td>0</td><td>0</td>
+                        <td class="bg-seq">29.75</td><td>81</td><td>9</td><td>60</td><td>64</td><td>4</td><td>12</td><td>0</td><td>8</td>
+                        <td class="bg-total">21.57</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Gemma-3-12b-it</td>
+                        <td class="bg-indep">20.33</td><td>83</td><td>0</td><td>5</td><td>34</td><td>0</td><td>0</td>
+                        <td class="bg-seq">13.88</td><td>32</td><td>28</td><td>36</td><td>1</td><td>1</td><td>4</td><td>0</td><td>9</td>
+                        <td class="bg-total">16.64</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Llama-3.2-11B-Vision-Instruct</td>
+                        <td class="bg-indep">6.50</td><td>1</td><td>0</td><td>23</td><td>15</td><td>0</td><td>0</td>
+                        <td class="bg-seq">20.63</td><td>68</td><td>5</td><td>8</td><td>69</td><td>1</td><td>14</td><td>0</td><td>0</td>
+                        <td class="bg-total">14.57</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">InternVL3-8B</td>
+                        <td class="bg-indep">13.83</td><td>55</td><td>0</td><td>16</td><td>3</td><td>6</td><td>3</td>
+                        <td class="bg-seq">10.38</td><td>0</td><td>1</td><td>71</td><td>0</td><td>0</td><td>11</td><td>0</td><td>0</td>
+                        <td class="bg-total">11.86</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">InternVL2.5-8B</td>
+                        <td class="bg-indep">2.67</td><td>2</td><td>0</td><td>13</td><td>1</td><td>0</td><td>0</td>
+                        <td class="bg-seq">1.25</td><td>0</td><td>9</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td>
+                        <td class="bg-total">1.86</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Qwen2.5-VL-7B-Instruct</td>
+                        <td class="bg-indep">1.67</td><td>3</td><td>0</td><td>4</td><td>2</td><td>1</td><td>0</td>
+                        <td class="bg-seq">1.25</td><td>1</td><td>0</td><td>6</td><td>0</td><td>3</td><td>0</td><td>0</td><td>0</td>
+                        <td class="bg-total">1.43</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Tier 3: Low-Level End-Effector Control -->
+<section id="tier3-control" class="table-section">
+    <div class="table-header-container">
+        <h3 class="table-title">Table 3: Low-Level Manipulation Performance</h3>
+        <span class="table-subtitle">Success rate (%) on specific manipulation tasks.</span>
+    </div>
+    
+    <div class="table-wrapper">
+        <div class="scroll-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Models</th>
+                        <th colspan="5">Tasks</th>
+                        <th rowspan="2" class="bg-total">Avg.</th>
+                    </tr>
+                    <tr>
+                        <th>Place8</th><th>Place9</th><th>Place10</th><th>Grab1</th><th>Stack3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="model-name">GPT-5</td><td>66</td><td>83</td><td>50</td><td>79</td><td>56</td><td class="bg-total">66.80</td></tr>
+                    <tr><td class="model-name">Gemini-2.5-Pro</td><td>82</td><td>61</td><td>39</td><td>81</td><td>38</td><td class="bg-total">60.20</td></tr>
+                    <tr><td class="model-name">Gemini-2.5-flash</td><td>74</td><td>48</td><td>13</td><td>84</td><td>49</td><td class="bg-total">53.60</td></tr>
+                    <tr><td class="model-name">InternVL3-78B</td><td>8</td><td>50</td><td>0</td><td>79</td><td>1</td><td class="bg-total">27.60</td></tr>
+                    <tr><td class="model-name">Claude-sonnet-4.5</td><td>17</td><td>13</td><td>6</td><td>89</td><td>2</td><td class="bg-total">25.40</td></tr>
+                    <tr><td class="model-name">Qwen3-VL-235B-A22B-Instruct</td><td>41</td><td>28</td><td>9</td><td>46</td><td>2</td><td class="bg-total">25.20</td></tr>
+                    <tr><td class="model-name">Gemma-3-27b-it</td><td>8</td><td>13</td><td>3</td><td>7</td><td>0</td><td class="bg-total">6.20</td></tr>
+                    <tr><td class="model-name">Llama-4-Scout-17B-16E-Instruct</td><td>1</td><td>0</td><td>0</td><td>29</td><td>0</td><td class="bg-total">6.00</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</div>
+    </div>
+    </div>
+    </div>
+
+
+    <section class="section">
+  <div class="container is-max-desktop">
+    <!-- 标题部分 -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Error Analysis</h2>
+      </div>
+    </div>
+
+    <!-- 图片展示部分: 使用 Bulma 的 columns 布局 -->
+    <div class="columns is-centered">
+      <div class="column is-centered has-text-centered">
+        <img src="static/images/error_gpt5.png" alt="GPT-5 Error Distribution" style="width: 80%; height: auto;">
+        <p class="is-size-6"><strong>(a) GPT-5</strong></p>
+      </div>
+      <div class="column is-centered has-text-centered">
+        <img src="static/images/error_gemini.png" alt="Gemini Error Distribution" style="width: 80%; height: auto;">
+        <p class="is-size-6"><strong>(b) Gemini-2.5-Pro</strong></p>
+      </div>
+    </div>
+
+    <!-- 图片标题 (Caption) -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Method / Key Results</h2>
+        <div class="notification is-light" style="font-size: 0.95rem; text-align: justify;">
+          <strong>Figure 1: Comparison of error type distributions.</strong> 
+          Visualization of failure modes for (a) GPT-5 and (b) Gemini-2.5-Pro. Inner rings represent primary error categories (Perceptual vs. Planning), while outer rings detail specific failure modes such as misjudgment or sequencing errors. Detailed definitions are provided in the Appendix.
+        </div>
+      </div>
+    </div>
+
+    <!-- 文字分析部分 -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
         <div class="content has-text-justified">
           <p>
-            Coming soon.
+            We analyzed failure modes for <strong>GPT-5</strong> and <strong>Gemini-2.5-Pro</strong>, excluding environmental noise. As illustrated in <strong>Figure 1</strong>, the primary bottleneck for GPT-5 is <strong>perceptual (54%)</strong>, largely driven by <em>Task State Estimation Misjudgment</em> (39%). Furthermore, it exhibits a notable inability to strictly adhere to prompt-specified execution parameters, categorized as <em>Action Parameter Inconsistency</em> (23%).
+          </p>
+          <p>
+            Conversely, while Gemini-2.5-Pro follows prompt constraints more reliably, it is significantly more limited by <strong>complex planning logic (56%)</strong>. Its main hurdles are <em>Action Sequencing</em> (31%) and <i>Bimanual Conflict</i> (24%), indicating deeper struggles with the temporal and spatial synchronization essential for sophisticated dual-arm coordination.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- BibTeX 引用 -->
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
