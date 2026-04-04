@@ -1,5 +1,5 @@
-/* 使用独特的命名空间 .bimanibench-wrapper 避免干扰全局样式 */
-.bimanibench-wrapper {
+/* 使用独特的命名空间 .stbibench-wrapper 避免干扰全局样式 */
+.stbibench-wrapper {
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #1a202c;
     line-height: 1.5;
@@ -8,18 +8,18 @@
     padding: 0 15px;
 }
 
-.bimanibench-wrapper section {
+.stbibench-wrapper section {
     margin-bottom: 60px;
 }
 
-.bimanibench-wrapper .table-title {
+.stbibench-wrapper .table-title {
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 8px;
     color: #111827;
 }
 
-.bimanibench-wrapper .table-subtitle {
+.stbibench-wrapper .table-subtitle {
     font-size: 0.9rem;
     color: #6b7280;
     margin-bottom: 16px;
@@ -27,7 +27,7 @@
     font-weight: 400;
 }
 
-.bimanibench-wrapper .scroll-container {
+.stbibench-wrapper .scroll-container {
     width: 100%;
     overflow-x: auto;
     border: 1px solid #e5e7eb;
@@ -35,7 +35,7 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.bimanibench-wrapper table {
+.stbibench-wrapper table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
@@ -43,14 +43,14 @@
     text-align: center;
 }
 
-.bimanibench-wrapper th, 
-.bimanibench-wrapper td {
+.stbibench-wrapper th, 
+.stbibench-wrapper td {
     padding: 10px 8px;
     border: 1px solid #f0f0f0;
 }
 
 /* 表头样式 */
-.bimanibench-wrapper thead th {
+.stbibench-wrapper thead th {
     background-color: #f9fafb;
     color: #374151;
     font-weight: 600;
@@ -60,7 +60,7 @@
 }
 
 /* 模型名称列 - 左对齐 */
-.bimanibench-wrapper td.model-name {
+.stbibench-wrapper td.model-name {
     text-align: left;
     padding-left: 16px;
     font-weight: 500;
@@ -69,7 +69,7 @@
 }
 
 /* 分组行样式 */
-.bimanibench-wrapper tr.group-header td {
+.stbibench-wrapper tr.group-header td {
     background-color: #f3f4f6;
     font-weight: 700;
     color: #4b5563;
@@ -79,19 +79,19 @@
 }
 
 /* 颜色高亮 - 对应 LaTeX 中的背景色 */
-.bimanibench-wrapper .bg-total { background-color: #f3f4f6 !important; font-weight: 700; }
-.bimanibench-wrapper .bg-indep { background-color: #fef3c7 !important; }
-.bimanibench-wrapper .bg-seq { background-color: #d1fae5 !important; }
+.stbibench-wrapper .bg-total { background-color: #f3f4f6 !important; font-weight: 700; }
+.stbibench-wrapper .bg-indep { background-color: #fef3c7 !important; }
+.stbibench-wrapper .bg-seq { background-color: #d1fae5 !important; }
 
 /* 悬停效果 */
-.bimanibench-wrapper tr:hover td {
+.stbibench-wrapper tr:hover td {
     background-color: #f9fafb;
 }
 
 /* 响应式调整 */
 @media (max-width: 768px) {
-    .bimanibench-wrapper table { font-size: 11px; }
-    .bimanibench-wrapper th, .bimanibench-wrapper td { padding: 6px 4px; }
+    .stbibench-wrapper table { font-size: 11px; }
+    .stbibench-wrapper th, .stbibench-wrapper td { padding: 6px 4px; }
 }
 
 .model-name {
