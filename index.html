@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="BiManiBench: A Hierarchical Benchmark for Evaluating Bimanual Coordination of Multimodal Large Language Models">
-  <meta name="keywords" content="BiManiBench, Bimanual Coordination, Multimodal Large Language Models, Robotics Benchmark">
+  <meta name="description" content="ST-BiBench: Benchmarking Multi-Stream Multimodal Coordination in Bimanual Embodied Tasks for MLLMs">
+  <meta name="keywords" content="ST-BiBench, Multi-Stream Multimodal Coordination, Bimanual Embodied Tasks, Multimodal Large Language Models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BiManiBench: A Hierarchical Benchmark for Evaluating Bimanual Coordination of Multimodal Large Language Models</title>
+  <title>ST-BiBench: Benchmarking Multi-Stream Multimodal Coordination in Bimanual Embodied Tasks for MLLMs</title>
 
   <!-- 载入基础样式 Bulma 和字体 -->
   <link rel="icon" href="./static/images/favicon.png"> 
@@ -49,11 +49,11 @@
   <!-- 第一行：Logo + 品牌名 -->
   <img src="./static/images/logo.png" 
      style="width:2.2em; vertical-align: middle; position: relative; top: -0.1em; margin-right: 0.1em;">
-  <span style="color: #246FAF; font-weight: 800;">BiMani</span><span style="font-weight: 800;">Bench</span>
+  <span style="color: #246FAF; font-weight: 800;">ST-Bi</span><span style="font-weight: 800;">Bench</span>
   <br>
   <!-- 第二行：描述性副标题 -->
   <span class="is-size-2" style="font-weight: 400;">
-    A Hierarchical Benchmark for Evaluating Bimanual Coordination of Multimodal Large Language Models
+    Benchmarking Multi-Stream Multimodal Coordination in Bimanual Embodied Tasks for MLLMs
   </span>
 </h1>
           
@@ -120,7 +120,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Multimodal Large Language Models (MLLMs) have significantly advanced embodied AI, and using them to benchmark robotic intelligence has become a pivotal trend. However, existing frameworks remain predominantly confined to single-arm manipulation, failing to capture the spatio-temporal coordination required for bimanual tasks like lifting a heavy pot. To address this, we introduce BiManiBench, a hierarchical benchmark evaluating MLLMs across three tiers: fundamental spatial reasoning, high-level action planning, and low-level end-effector control. Our framework isolates unique bimanual challenges, such as arm reachability and kinematic constraints, thereby distinguishing perceptual hallucinations from planning failures. Analysis of over 30 state-of-the-art models reveals that despite high-level reasoning proficiency, MLLMs struggle with dual-arm spatial grounding and control, frequently resulting in mutual interference and sequencing errors. These findings suggest the current paradigm lacks a deep understanding of mutual kinematic constraints, highlighting the need for future research to focus on inter-arm collision-avoidance and fine-grained temporal sequencing.
+            Multimodal Large Language Models (MLLMs) have significantly advanced the landscape of embodied AI, yet transitioning to synchronized bimanual coordination introduces formidable challenges in multi-stream multimodal integration. We introduce ST-BiBench, a comprehensive multi-tier framework for evaluating spatio-temporal multimodal coordination. Our approach centers on Strategic Coordination Planning, assessing high-level cross-modal reasoning over multiple action and perception streams. To investigate the "proximity paradox"—where semantically coherent plans fail to align with spatially grounded visual inputs—we incorporate Foundational Spatial Grounding to verify workspace awareness and arm-selection logic. Furthermore, we probe model frontiers through Fine-Grained Action Control, investigating whether MLLMs can directly synthesize high-dimensional continuous action modalities (16-Dim) from complex multimodal metadata. Evaluating 30+ state-of-the-art MLLMs, we uncover a persistent and pervasive "coordination paradox"—a significant gap between high-level strategic reasoning and fine-grained physical execution. Results reveal that while frontier MLLMs excel at logic-driven strategy, they frequently suffer from perception-logic disconnection and multi-stream interference during multimodal fusion. ST-BiBench provides a platform for identifying critical bottlenecks in multi-stream multimodal fusion and cross-modal alignment for complex embodied tasks.
           </p>
         </div>
       </div>
@@ -139,23 +139,23 @@
         <div class="content has-text-justified">
           <!-- 段落 1: 背景与挑战 -->
           <p>
-            <strong>BiManiBench</strong> is the <strong>first hierarchical benchmark</strong> specifically designed to systematically evaluate the <strong>bimanual coordination</strong> capabilities of Multimodal Large Language Models (MLLMs). While current research in embodied AI has made significant strides in single-arm manipulation, bimanual coordination remains a formidable challenge. It requires more than just parallel execution; it demands <strong>rigorous spatiotemporal synchronization</strong> and <strong>dynamic role assignment</strong> to navigate complex kinematic constraints and prevent self-collisions. BiManiBench addresses this critical gap by providing a dedicated platform to analyze how foundation models manage the unique complexities of <strong>dual-arm physical interaction</strong>.
+            <strong>ST-BiBench</strong> is the <strong>first hierarchical benchmark</strong> specifically designed to systematically evaluate the <strong>bimanual coordination</strong> capabilities of Multimodal Large Language Models (MLLMs). While current research in embodied AI has made significant strides in single-arm manipulation, bimanual coordination remains a formidable challenge. It requires more than just parallel execution; it demands <strong>rigorous spatiotemporal synchronization</strong> and <strong>dynamic role assignment</strong> to navigate complex kinematic constraints and prevent self-collisions. ST-BiBench addresses this critical gap by providing a dedicated platform to analyze how foundation models manage the unique complexities of <strong>dual-arm physical interaction</strong>.
           </p>
 
           <!-- 图片 1: Framework Overview -->
           <div class="has-text-centered" style="margin-top: 2rem; margin-bottom: 2rem;">
-            <img src="./static/images/framework_overview.png" alt="BiManiBench Framework Overview" style="width: 100%; height: auto; border-radius: 10px;">
-            <p class="help" style="margin-top: 10px;"><strong>Figure 1</strong>: The hierarchical evaluation framework of BiManiBench, deconstructing bimanual coordination into three tiers of abstraction.</p>
+            <img src="./static/images/framework_overview.png" alt="ST-BiBench Framework Overview" style="width: 100%; height: auto; border-radius: 10px;">
+            <p class="help" style="margin-top: 10px;"><strong>Figure 1</strong>: The hierarchical evaluation framework of ST-BiBench, deconstructing bimanual coordination into three parts of abstraction.</p>
           </div>
 
           <!-- 段落 2: 三层评估框架 -->
           <p>
-            As illustrated in <strong>Figure 1</strong>, our benchmark features a comprehensive <strong>three-tier evaluation framework</strong> that deconstructs bimanual tasks into different levels of abstraction. <strong>Tier 1 (Dual-Arm Spatial Reasoning)</strong> assesses fundamental workspace awareness and arm allocation. <strong>Tier 2 (High-Level Action Planning)</strong> evaluates long-horizon reasoning under diverse coordination modes, including independent parallel tasks and complex sequential collaborative manipulation. <strong>Tier 3 (Low-Level End-Effector Control)</strong> tests the model’s ability to directly generate <strong>fine-grained, 16-dimensional continuous poses</strong> for precise bimanual synchronization. This hierarchical design allows researchers to <strong>isolate specific failure modes</strong> and distinguish between perceptual hallucinations and planning deficiencies.
+            As illustrated in <strong>Figure 1</strong>, our benchmark features a comprehensive <strong>three-tier evaluation framework</strong> that deconstructs bimanual tasks into different levels of abstraction. <strong>Tier 1 (Strategic Coordination Planning)</strong> serves as the core reasoning engine to evaluate high-level cross-modal alignment, assessing the model's ability to decompose long-horizon instructions into independent parallel or sequential collaborative primitives. <strong>Tier 2 (Foundational Spatial Grounding)</strong> addresses the "proximity paradox" by verifying the model’s awareness of bilateral workspace constraints and its ability to resolve spatial-semantic conflicts during arm allocation. <strong>Tier 3 (Fine-Grained Action Control)</strong> tests the frontiers of dense modality fusion, requiring the model to directly synthesize <strong>16-dimensional continuous action modalities</strong> for precise end-to-end actuation. This hierarchical design allows researchers to <strong>isolate specific failure modes</strong> and distinguish between high-level logical deficiencies, spatial hallucinations, and fine-grained execution bottlenecks.
           </p>
 
           <!-- 图片 2: Agent Pipeline -->
           <div class="has-text-centered" style="margin-top: 2rem; margin-bottom: 2rem;">
-            <img src="./static/images/agent_pipeline.png" alt="BiManiBench Agent Pipeline" style="width: 100%; height: auto; border-radius: 10px;">
+            <img src="./static/images/agent_pipeline.png" alt="ST-BiBench Agent Pipeline" style="width: 100%; height: auto; border-radius: 10px;">
             <p class="help" style="margin-top: 10px;"><strong>Figure 2</strong>: The vision-driven agent pipeline designed for structured multimodal perception and reasoning.</p>
           </div>
 
@@ -166,7 +166,7 @@
 
           <!-- 段落 4: 实验结论 -->
           <p>
-            Through an extensive empirical study of <strong>over 30 state-of-the-art models</strong>—including proprietary systems like <strong>GPT-5, Gemini, and Claude</strong>—our results reveal a significant <strong>"reasoning-actuation gap."</strong> While modern MLLMs demonstrate proficiency in high-level strategic planning, they frequently struggle with <strong>fragile spatial grounding</strong> and <strong>precise dual-arm control</strong>. By pinpointing these bottlenecks, BiManiBench provides a foundational framework and diagnostic tool for the community to develop more robust, versatile robotic agents capable of <strong>human-like physical coordination</strong>.
+            Through an extensive empirical study of <strong>over 30 state-of-the-art models</strong>—including proprietary systems like <strong>GPT-5, Gemini, and Claude</strong>—our results reveal a significant <strong>"reasoning-actuation gap."</strong> While modern MLLMs demonstrate proficiency in high-level strategic planning, they frequently struggle with <strong>fragile spatial grounding</strong> and <strong>precise dual-arm control</strong>. By pinpointing these bottlenecks, ST-BiBench provides a foundational framework and diagnostic tool for the community to develop more robust, versatile robotic agents capable of <strong>human-like physical coordination</strong>.
           </p>
         </div>
       </div>
@@ -182,15 +182,30 @@
       <div class="column is-full-width">
         <h2 class="title is-3" style="margin-bottom: 1rem;">Hierarchical Evaluation Examples</h2>
         
-        <!-- Tier 1: Dual-Arm Spatial Reasoning -->
-        <h3 class="title is-4" style="margin-top: 2rem; margin-bottom: 1rem;">Tier 1: Dual-Arm Spatial Reasoning</h3>
+        <!-- Tier 1: Strategic Coordination Planning (原 Tier 2) -->
+        <h3 class="title is-4" style="margin-top: 2rem; margin-bottom: 1rem;">Tier 1: Strategic Coordination Planning</h3>
         <div class="content has-text-justified">
           <p style="margin-bottom: 1.5rem;">
-            This tier assesses fundamental spatial awareness and the ability to perform <strong>dynamic arm assignment</strong>. Given a visual observation, the model must determine the optimal manipulator while navigating strict <strong>kinematic constraints</strong> and limited reachability.
+            Serving as the core reasoning engine, this tier evaluates the agent's ability to decompose long-horizon instructions into a sequence of <strong>atomic primitives</strong>. It assesses high-level logic over <strong>independent parallel manipulation</strong> and <strong>sequential collaborative</strong> tasks to ensure role consistency and temporal synchronization.
+          </p>
+          <div class="has-text-centered">
+            <video id="high-level-video" autoplay controls muted loop playsinline style="width: 100%; max-width: 850px; border-radius: 8px;">
+              <source src="./static/videos/high_level_success_demo.mp4" type="video/mp4">
+            </video>
+            <p class="help" style="margin-top: 0.5rem; margin-bottom: 0;"><strong>Task Success</strong>: <i>handover_block</i> (Strategic Coordination Planning)</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 3rem;"></div>
+
+        <!-- Tier 2: Foundational Spatial Grounding (原 Tier 1) -->
+        <h3 class="title is-4" style="margin-bottom: 1rem;">Tier 2: Foundational Spatial Grounding</h3>
+        <div class="content has-text-justified">
+          <p style="margin-bottom: 1.5rem;">
+            This tier addresses the <strong>"proximity paradox"</strong> by verifying the model's awareness of <strong>bilateral workspace constraints</strong>. It evaluates whether the MLLM can resolve spatial-semantic conflicts and assign the optimal arm while navigating overlapping kinematic zones and avoiding singularities.
           </p>
         </div>
         
-        <!-- Tier 1 改为纵向大图排列 -->
         <div class="columns is-centered is-multiline">
           <!-- High Quality -->
           <div class="column is-10 has-text-centered" style="padding-bottom: 0.5rem;">
@@ -209,42 +224,21 @@
           </div>
         </div>
 
-        <!-- Tier 2 & 3 改为纵向排列并缩小间距 -->
-        <div class="columns is-centered" style="margin-top: 2rem;">
-          <div class="column is-full-width">
-            
-            <!-- Tier 2 -->
-            <h3 class="title is-4" style="margin-bottom: 1rem;">Tier 2: High-Level Action Planning</h3>
-            <div class="content has-text-justified">
-              <p style="margin-bottom: 1rem;">
-                Evaluates logical reasoning and task decomposition in <strong>long-horizon scenarios</strong>. The model acts as a strategic planner, outputting a logical sequence of <strong>atomic primitives</strong> (e.g., Grasp, Place).
-              </p>
-              <div class="has-text-centered">
-                <video id="high-level-video" autoplay controls muted loop playsinline style="width: 100%; max-width: 850px; border-radius: 8px;">
-                  <source src="./static/videos/high_level_success_demo.mp4" type="video/mp4">
-                </video>
-                <p class="help" style="margin-top: 0.5rem; margin-bottom: 0;"><strong>Task Success</strong>: <i>handover_block</i> (Sequential coordination)</p>
-              </div>
-            </div>
+        <div style="margin-top: 3rem;"></div>
 
-            <div style="margin-top: 3rem;"></div> <!-- 控制两个Tier之间的距离 -->
-
-            <!-- Tier 3 -->
-            <h3 class="title is-4" style="margin-bottom: 1rem;">Tier 3: Low-Level End-Effector Control</h3>
-            <div class="content has-text-justified">
-              <p style="margin-bottom: 1rem;">
-                The most challenging tier requiring precise motor control. The agent directly generates <strong>continuous 16-dimensional actions</strong> (7-DoF pose and 1-DoF gripper state per arm) for bimanual synchronization.
-              </p>
-              <div class="has-text-centered">
-                <video id="low-level-video" autoplay controls muted loop playsinline style="width: 100%; max-width: 850px; border-radius: 8px;">
-                  <source src="./static/videos/low_level_success_demo.mp4" type="video/mp4">
-                </video>
-                <p class="help" style="margin-top: 0.5rem; margin-bottom: 0;"><strong>Task Success</strong>: <i>stack_blocks_two</i> (Precise motor control)</p>
-              </div>
-            </div>
-
+        <!-- Tier 3: Fine-Grained Action Control (保持不变，但更新描述对齐 Intro) -->
+        <h3 class="title is-4" style="margin-bottom: 1rem;">Tier 3: Fine-Grained Action Control</h3>
+        <div class="content has-text-justified">
+          <p style="margin-bottom: 1rem;">
+            Testing the limits of dense modality fusion, this tier requires the model to directly synthesize <strong>16-dimensional continuous action modalities</strong>. It assesses the transition from high-level perception to precise <strong>end-to-end bimanual actuation</strong> in dynamic environments.
+          </p>
+          <div class="has-text-centered">
+            <video id="low-level-video" autoplay controls muted loop playsinline style="width: 100%; max-width: 850px; border-radius: 8px;">
+              <source src="./static/videos/low_level_success_demo.mp4" type="video/mp4">
+            </video>
+            <p class="help" style="margin-top: 0.5rem; margin-bottom: 0;"><strong>Task Success</strong>: <i>stack_blocks_two</i> (Fine-Grained Action Control)</p>
           </div>
-        </div> <!-- End of T2 & T3 columns -->
+        </div>
 
       </div>
     </div>
@@ -257,65 +251,10 @@
       <div class="column is-full-width">
         <h2 class="title is-3" style="margin-bottom: 1rem;">Hierarchical Evaluation Results</h2>
         
-<div class="bimanibench-wrapper">
-
-    <!-- Tier 1: Dual-Arm Spatial Reasoning -->
-    <section id="tier1-spatial">
-        <h3 class="table-title">Table 1: Dual-Arm Spatial Reasoning Results</h3>
-        <span class="table-subtitle">Success scores across three scenario settings: Sparse, Dense, and Cluttered. "Avg." represents the overall mean performance.</span>
-        
-        <div class="scroll-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th rowspan="2">Models</th>
-                        <th colspan="3">Task scenario settings</th>
-                        <th rowspan="2" class="bg-total">Avg.</th>
-                    </tr>
-                    <tr>
-                        <th>Sparse</th>
-                        <th>Dense</th>
-                        <th>Cluttered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                                        <tr><td class="model-name">Gemini-2.0-flash</td><td>95.45</td><td>98.69</td><td>92.00</td><td class="bg-total">95.38</td></tr>
-                    <tr><td class="model-name">Gemini-2.5-flash</td><td>95.77</td><td>96.76</td><td>92.88</td><td class="bg-total">95.13</td></tr>
-                    <tr><td class="model-name">Gemini-2.5-pro</td><td>96.14</td><td>96.77</td><td>92.12</td><td class="bg-total">95.01</td></tr>
-                    <tr><td class="model-name">Claude-sonnet-4.5</td><td>96.12</td><td>94.78</td><td>92.23</td><td class="bg-total">94.38</td></tr>
-                    <tr><td class="model-name">GPT-5</td><td>94.73</td><td>95.13</td><td>92.97</td><td class="bg-total">94.28</td></tr>
-                    <tr><td class="model-name">GLM-4.5V</td><td>91.48</td><td>97.77</td><td>93.00</td><td class="bg-total">94.08</td></tr>
-                    <tr><td class="model-name">Qwen3-VL-32B-Instruct</td><td>94.47</td><td>95.77</td><td>91.77</td><td class="bg-total">94.00</td></tr>
-                    <tr><td class="model-name">Claude-sonnet-4</td><td>94.13</td><td>94.46</td><td>92.88</td><td class="bg-total">93.82</td></tr>
-                    <tr><td class="model-name">Claude-sonnet-3.7</td><td>93.46</td><td>95.11</td><td>91.94</td><td class="bg-total">93.51</td></tr>
-                    <tr><td class="model-name">InternVL3-78B</td><td>92.80</td><td>97.07</td><td>90.16</td><td class="bg-total">93.34</td></tr>
-                    <tr><td class="model-name">Ovis2-34B</td><td>94.78</td><td>92.78</td><td>90.45</td><td class="bg-total">92.67</td></tr>
-                    <tr><td class="model-name">GPT-4.1</td><td>93.43</td><td>92.48</td><td>91.76</td><td class="bg-total">92.55</td></tr>
-                    <tr><td class="model-name">Ovis2-16B</td><td>94.07</td><td>91.74</td><td>88.00</td><td class="bg-total">91.27</td></tr>
-                    <tr><td class="model-name">Qwen3-VL-235B-A22B-Instruct</td><td>86.82</td><td>93.50</td><td>90.33</td><td class="bg-total">90.22</td></tr>
-                    <tr><td class="model-name">InternVL3.5-38B</td><td>89.48</td><td>91.45</td><td>86.75</td><td class="bg-total">89.23</td></tr>
-                    <tr><td class="model-name">GPT-4o</td><td>89.02</td><td>91.13</td><td>87.10</td><td class="bg-total">89.08</td></tr>
-                    <tr><td class="model-name">Qwen3-VL-30B-A3B-Instruct</td><td>85.50</td><td>91.13</td><td>88.98</td><td class="bg-total">88.54</td></tr>
-                    <tr><td class="model-name">InternVL3-38B</td><td>81.82</td><td>92.13</td><td>89.85</td><td class="bg-total">87.94</td></tr>
-                    <tr><td class="model-name">InternVL2.5-78B</td><td>87.21</td><td>86.45</td><td>89.37</td><td class="bg-total">87.68</td></tr>
-                    <tr><td class="model-name">Llama-4-Scout-17B-16E-Instruct</td><td>85.49</td><td>87.75</td><td>86.16</td><td class="bg-total">86.47</td></tr>
-                    <tr><td class="model-name">Gemma-3-27b-it</td><td>92.40</td><td>81.12</td><td>85.78</td><td class="bg-total">86.43</td></tr>
-                    <tr><td class="model-name">Qwen2.5-VL-32B-Instruct</td><td>85.16</td><td>86.08</td><td>87.38</td><td class="bg-total">86.21</td></tr>
-                    <tr><td class="model-name">InternVL2.5-38B</td><td>79.16</td><td>85.47</td><td>85.99</td><td class="bg-total">83.54</td></tr>
-                    <tr><td class="model-name">InternVL2.5-8B</td><td>87.48</td><td>78.96</td><td>81.81</td><td class="bg-total">82.75</td></tr>
-                    <tr><td class="model-name">InternVL3-8B</td><td>79.53</td><td>69.79</td><td>86.79</td><td class="bg-total">78.70</td></tr>
-                    <tr><td class="model-name">Ovis2.5-9B</td><td>72.79</td><td>78.12</td><td>73.13</td><td class="bg-total">74.68</td></tr>
-                    <tr><td class="model-name">Qwen2.5-VL-7B-Instruct</td><td>75.20</td><td>65.83</td><td>79.34</td><td class="bg-total">73.46</td></tr>
-                    <tr><td class="model-name">Gemma-3-12b-it</td><td>80.09</td><td>57.17</td><td>70.22</td><td class="bg-total">69.16</td></tr>
-                    <tr><td class="model-name">Llama-3.2-11B-Vision-Instruct</td><td>54.64</td><td>53.62</td><td>54.01</td><td class="bg-total">54.09</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Tier 2: High-Level Action Planning -->
-    <section id="tier2-planning">
-        <h3 class="table-title">Table 2: High-Level Action Planning Results</h3>
+<div class="st-bimanibench-wrapper">
+    <!-- Tier 1: Strategic Coordination Planning -->
+    <section id="tier1-planning">
+        <h3 class="table-title">Table 1: Strategic Coordination Planning Results</h3>
         <span class="table-subtitle">Success rate (%) for independent parallel and sequential collaborative manipulation tasks.</span>
         
         <div class="scroll-container">
@@ -506,10 +445,65 @@
         </div>
     </section>
 
-    <!-- Tier 3: Low-Level End-Effector Control -->
+    <!-- Tier 2: Foundational Spatial Grounding -->
+    <section id="tier2-spatial">
+        <h3 class="table-title">Table 2: Foundational Spatial Grounding Results</h3>
+        <span class="table-subtitle">Success scores across three scenario settings: Sparse, Dense, and Cluttered. "Avg." represents the overall mean performance.</span>
+        
+        <div class="scroll-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Models</th>
+                        <th colspan="3">Task scenario settings</th>
+                        <th rowspan="2" class="bg-total">Avg.</th>
+                    </tr>
+                    <tr>
+                        <th>Sparse</th>
+                        <th>Dense</th>
+                        <th>Cluttered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                        <tr><td class="model-name">Gemini-2.0-flash</td><td>95.45</td><td>98.69</td><td>92.00</td><td class="bg-total">95.38</td></tr>
+                    <tr><td class="model-name">Gemini-2.5-flash</td><td>95.77</td><td>96.76</td><td>92.88</td><td class="bg-total">95.13</td></tr>
+                    <tr><td class="model-name">Gemini-2.5-pro</td><td>96.14</td><td>96.77</td><td>92.12</td><td class="bg-total">95.01</td></tr>
+                    <tr><td class="model-name">Claude-sonnet-4.5</td><td>96.12</td><td>94.78</td><td>92.23</td><td class="bg-total">94.38</td></tr>
+                    <tr><td class="model-name">GPT-5</td><td>94.73</td><td>95.13</td><td>92.97</td><td class="bg-total">94.28</td></tr>
+                    <tr><td class="model-name">GLM-4.5V</td><td>91.48</td><td>97.77</td><td>93.00</td><td class="bg-total">94.08</td></tr>
+                    <tr><td class="model-name">Qwen3-VL-32B-Instruct</td><td>94.47</td><td>95.77</td><td>91.77</td><td class="bg-total">94.00</td></tr>
+                    <tr><td class="model-name">Claude-sonnet-4</td><td>94.13</td><td>94.46</td><td>92.88</td><td class="bg-total">93.82</td></tr>
+                    <tr><td class="model-name">Claude-sonnet-3.7</td><td>93.46</td><td>95.11</td><td>91.94</td><td class="bg-total">93.51</td></tr>
+                    <tr><td class="model-name">InternVL3-78B</td><td>92.80</td><td>97.07</td><td>90.16</td><td class="bg-total">93.34</td></tr>
+                    <tr><td class="model-name">Ovis2-34B</td><td>94.78</td><td>92.78</td><td>90.45</td><td class="bg-total">92.67</td></tr>
+                    <tr><td class="model-name">GPT-4.1</td><td>93.43</td><td>92.48</td><td>91.76</td><td class="bg-total">92.55</td></tr>
+                    <tr><td class="model-name">Ovis2-16B</td><td>94.07</td><td>91.74</td><td>88.00</td><td class="bg-total">91.27</td></tr>
+                    <tr><td class="model-name">Qwen3-VL-235B-A22B-Instruct</td><td>86.82</td><td>93.50</td><td>90.33</td><td class="bg-total">90.22</td></tr>
+                    <tr><td class="model-name">InternVL3.5-38B</td><td>89.48</td><td>91.45</td><td>86.75</td><td class="bg-total">89.23</td></tr>
+                    <tr><td class="model-name">GPT-4o</td><td>89.02</td><td>91.13</td><td>87.10</td><td class="bg-total">89.08</td></tr>
+                    <tr><td class="model-name">Qwen3-VL-30B-A3B-Instruct</td><td>85.50</td><td>91.13</td><td>88.98</td><td class="bg-total">88.54</td></tr>
+                    <tr><td class="model-name">InternVL3-38B</td><td>81.82</td><td>92.13</td><td>89.85</td><td class="bg-total">87.94</td></tr>
+                    <tr><td class="model-name">InternVL2.5-78B</td><td>87.21</td><td>86.45</td><td>89.37</td><td class="bg-total">87.68</td></tr>
+                    <tr><td class="model-name">Llama-4-Scout-17B-16E-Instruct</td><td>85.49</td><td>87.75</td><td>86.16</td><td class="bg-total">86.47</td></tr>
+                    <tr><td class="model-name">Gemma-3-27b-it</td><td>92.40</td><td>81.12</td><td>85.78</td><td class="bg-total">86.43</td></tr>
+                    <tr><td class="model-name">Qwen2.5-VL-32B-Instruct</td><td>85.16</td><td>86.08</td><td>87.38</td><td class="bg-total">86.21</td></tr>
+                    <tr><td class="model-name">InternVL2.5-38B</td><td>79.16</td><td>85.47</td><td>85.99</td><td class="bg-total">83.54</td></tr>
+                    <tr><td class="model-name">InternVL2.5-8B</td><td>87.48</td><td>78.96</td><td>81.81</td><td class="bg-total">82.75</td></tr>
+                    <tr><td class="model-name">InternVL3-8B</td><td>79.53</td><td>69.79</td><td>86.79</td><td class="bg-total">78.70</td></tr>
+                    <tr><td class="model-name">Ovis2.5-9B</td><td>72.79</td><td>78.12</td><td>73.13</td><td class="bg-total">74.68</td></tr>
+                    <tr><td class="model-name">Qwen2.5-VL-7B-Instruct</td><td>75.20</td><td>65.83</td><td>79.34</td><td class="bg-total">73.46</td></tr>
+                    <tr><td class="model-name">Gemma-3-12b-it</td><td>80.09</td><td>57.17</td><td>70.22</td><td class="bg-total">69.16</td></tr>
+                    <tr><td class="model-name">Llama-3.2-11B-Vision-Instruct</td><td>54.64</td><td>53.62</td><td>54.01</td><td class="bg-total">54.09</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <!-- Tier 3: Fine-Grained Action Control -->
 <section id="tier3-control" class="table-section">
     <div class="table-header-container">
-        <h3 class="table-title">Table 3: Low-Level Manipulation Performance</h3>
+        <h3 class="table-title">Table 3: Fine-Grained Action Control Performance</h3>
         <span class="table-subtitle">Success rate (%) on specific manipulation tasks.</span>
     </div>
     
@@ -596,8 +590,8 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{wu2026bimanibench,
-  title     = {BiManiBench: A Hierarchical Benchmark for Evaluating Bimanual Coordination of Multimodal Large Language Models},
+    <pre><code>@article{wu2026stbimanibench,
+  title     = {ST-BiBench: Benchmarking Multi-Stream Multimodal Coordination in Bimanual Embodied Tasks for MLLMs},
   author    = {Wu, Xin and Liang, Zhixuan and Ma, Yue and Hu, Mengkang and Qin, Zhiyuan and Li, Xiu},
   journal   = {arXiv preprint arXiv:2602.08392},
   year      = {2026},
